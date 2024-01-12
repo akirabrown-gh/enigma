@@ -1,0 +1,43 @@
+#N canvas 476 234 612 521 12;
+#X obj 155 155 key;
+#X obj 155 239 list tosymbol;
+#X symbolatom 155 263 0 0 0 0 - - -;
+#X obj 155 377 list_enigma;
+#X symbolatom 155 401 0 0 0 0 - - -;
+#X obj 192 401 unpack s s s;
+#X symbolatom 192 425 0 0 0 3 - - -;
+#X symbolatom 232 425 0 0 0 3 - - -;
+#X symbolatom 273 425 0 0 0 3 - - -;
+#X text 270 444 w1;
+#X text 229 444 w1;
+#X text 189 444 w1;
+#X obj 155 179 moses 97;
+#X obj 208 203 moses 123;
+#X text 51 263 plain text -->;
+#X text 51 400 ciphertext -->;
+#X text 300 444 <-- wheel positions;
+#X msg 175 343 wheelorder 3 2 1 \, ringsetting 1 1 1 \, position a
+a z y;
+#X obj 175 295 loadbang;
+#X obj 175 319 del 1;
+#X text 51 33 this patch is a basic demonstration of using [list_enigma]
+to emulate a commercial Enigma D cipher machine. [key] listens to the
+computer keyboard and the [moses] objects limit the input characters
+used for plain text to lowercase letters a-z - this is so that characters
+outside of this range don't 'step' the cipher. editing/clicking the
+message box for wheelorder/ringsetting/position initialises the cipher.
+, f 75;
+#X text 295 317 click to reset cipher;
+#X connect 0 0 12 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 3 1 5 0;
+#X connect 5 0 6 0;
+#X connect 5 1 7 0;
+#X connect 5 2 8 0;
+#X connect 12 1 13 0;
+#X connect 13 0 1 0;
+#X connect 17 0 3 0;
+#X connect 18 0 19 0;
+#X connect 19 0 17 0;

@@ -1,0 +1,863 @@
+#N canvas 251 25 1205 692 10;
+#N canvas 170 106 1110 608 counters 0;
+#X obj 566 127 sel;
+#X obj 581 106 % 26;
+#X obj 581 64 + 1;
+#X obj 576 167 spigot;
+#X obj 566 377 ==;
+#X obj 581 356 % 26;
+#X obj 426 377 ==;
+#X obj 441 313 + 2;
+#X obj 441 356 % 26;
+#X obj 426 438 &;
+#X obj 426 490 sel 1;
+#X obj 426 532 i;
+#X obj 456 532 + 1;
+#X obj 486 532 % 26;
+#X obj 581 43 r \$0-rt;
+#X obj 441 292 r \$0-rt;
+#X obj 581 292 r \$0-mt;
+#X obj 631 43 r \$0-rrs;
+#X obj 436 459 s \$0-ds;
+#X obj 609 146 r \$0-ds;
+#X obj 506 54 r \$0-b;
+#X obj 436 127 s \$0-rp;
+#X obj 581 218 s \$0-mp;
+#X obj 426 553 s \$0-lp;
+#X obj 426 75 r \$0-rsp;
+#X obj 626 176 r \$0-msp;
+#X obj 436 511 r \$0-lsp;
+#X obj 426 106 i;
+#X obj 456 106 + 1;
+#X obj 486 106 % 26;
+#X obj 566 197 i;
+#X obj 596 197 + 1;
+#X obj 626 197 % 26;
+#X text 701 273 <-----------------------------------------------------------
+;
+#X text 701 385 <-----------------------------------------------------------
+;
+#X text 42 254 ----------------------------------------------------------->
+;
+#X text 42 274 add the left wheel turnover position (t) to its ring
+setting (rs) and keep within a range of 0-25.;
+#X text 42 304 if the current position of the left wheel is exactly
+equal to its turnover (offset by the ring setting) \, this == object
+sends a logical 1 to the following AND gate.;
+#X text 704 333 if the current position of the middle wheel is exactly
+equal to its turnover (offset by the ring setting) \, the == object
+sends a logical 1 to the following AND gate.;
+#X text 42 414 ----------------------------------------------------------->
+;
+#X text 701 15 <----------------------------------------------------------
+;
+#X text 704 303 adds the middle wheel turnover position (t) to its
+ring setting (rs) and keep within a range of 0-25.;
+#X text 701 37 adds the right wheel's turnover position (t) to its
+ring setting (rs). the right wheel's turnover determines at what position
+the middle rotor will step. here \, there ring setting acts as an offset
+\, causing the middle wheel to turnover later. the modulo object keeps
+the possible turnover positions within the range of 0-25.;
+#X text 42 394 see the spigot object and counter above right.;
+#X text 42 344 the AND gate compares the current positions of the left
+and middle wheels. if both are equal to their turnover positions (offset
+by their ring settings) \, then a logical 1 causes the middle wheel
+to 'double step'.;
+#X text 701 114 <-----------------------------------------------------------
+;
+#X text 701 149 the spigot object receives logic 1 from the AND gate
+(below left) \, opening the spigot to enable double stepping on the
+middle wheel \, letting through an additional 'bang' that will advance
+the counter a second time on the next key press.;
+#X text 701 209 the counter enacts the stepping of the middle wheel
+\, with the ability to receive an initial starting position (sp). its
+value is sent as the middle wheel's current position (p) towards the
+ciphers subpatch.;
+#X text 42 46 ----------------------------------------------------------->
+;
+#X text 42 66 the first counter recieves an initial starting position
+(sp) and enacts the stepping of the right wheel upon receipt of a 'bang'.
+its value is sent as the current position of the wheel (p) towards
+the ciphers subpatch.;
+#X text 42 176 ----------------------------------------------------------->
+;
+#X text 42 444 when the left and middle wheels are both exactly equal
+to their turnover position (offset by the ring settings) \, the AND
+gate produces a logical 1 \, which causes the right wheel to step.
+;
+#X text 42 494 this counter enacts the infrequent stepping of the left
+wheel. exactly as above \, this counter may receive an initial starting
+position (sp) \, and sends its value as the current position of the
+wheel (p) towards the ciphers subpatch;
+#X text 42 554 ----------------------------------------------------------->
+;
+#X text 42 126 enigma wheels will either have letters or numbers engraved
+onto their rings. where numbers are used \, these range from 1 to 26
+for ease of programming \, this patch operates between 0 to 25 - input
+values are scaled accordingly.;
+#X obj 506 75 t b b;
+#X obj 581 85 +;
+#X obj 631 64 t b f;
+#X obj 491 293 r \$0-rrs;
+#X obj 441 334 +;
+#X obj 491 314 t b f;
+#X obj 581 335 +;
+#X obj 631 313 t b f;
+#X obj 631 292 r \$0-mrs;
+#X connect 0 0 30 0;
+#X connect 1 0 0 1;
+#X connect 2 0 56 0;
+#X connect 3 0 30 0;
+#X connect 4 0 9 1;
+#X connect 5 0 4 1;
+#X connect 6 0 9 0;
+#X connect 7 0 59 0;
+#X connect 8 0 6 1;
+#X connect 9 0 18 0;
+#X connect 9 0 10 0;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 11 0 23 0;
+#X connect 12 0 13 0;
+#X connect 13 0 11 1;
+#X connect 14 0 2 0;
+#X connect 15 0 7 0;
+#X connect 16 0 61 0;
+#X connect 17 0 57 0;
+#X connect 19 0 3 1;
+#X connect 20 0 55 0;
+#X connect 24 0 27 0;
+#X connect 25 0 30 0;
+#X connect 26 0 11 0;
+#X connect 27 0 28 0;
+#X connect 27 0 0 0;
+#X connect 27 0 21 0;
+#X connect 27 0 6 0;
+#X connect 28 0 29 0;
+#X connect 29 0 27 1;
+#X connect 30 0 31 0;
+#X connect 30 0 22 0;
+#X connect 30 0 4 0;
+#X connect 31 0 32 0;
+#X connect 32 0 30 1;
+#X connect 55 0 3 0;
+#X connect 55 1 27 0;
+#X connect 56 0 1 0;
+#X connect 57 0 56 0;
+#X connect 57 1 56 1;
+#X connect 58 0 60 0;
+#X connect 59 0 8 0;
+#X connect 60 0 59 0;
+#X connect 60 1 59 1;
+#X connect 61 0 5 0;
+#X connect 62 0 61 0;
+#X connect 62 1 61 1;
+#X connect 63 0 62 0;
+#X restore 1102 678 pd counters;
+#N canvas 0 25 1280 592 ciphers 0;
+#X obj 394 99 +;
+#X obj 394 141 % 26;
+#X obj 544 99 -;
+#X obj 544 120 + 26;
+#X obj 544 141 % 26;
+#X obj 544 183 +;
+#X obj 544 204 % 26;
+#X obj 694 99 -;
+#X obj 694 120 + 26;
+#X obj 694 141 % 26;
+#X obj 694 183 +;
+#X obj 694 204 % 26;
+#X obj 854 99 -;
+#X obj 854 120 + 26;
+#X obj 854 141 % 26;
+#X obj 1004 183 +;
+#X obj 1004 204 % 26;
+#X obj 1154 99 -;
+#X obj 1154 120 + 26;
+#X obj 1154 141 % 26;
+#X obj 1304 99 -;
+#X obj 1304 120 + 26;
+#X obj 1304 141 % 26;
+#X obj 1154 181 +;
+#X obj 1154 202 % 26;
+#X obj 1304 181 +;
+#X obj 1304 202 % 26;
+#X obj 1454 99 -;
+#X obj 1454 120 + 26;
+#X obj 1454 141 % 26;
+#X obj 294 433 tabread \$0-etw;
+#X obj 1454 433 tabread \$0-_etw;
+#X msg 404 412 set \$1;
+#X obj 404 351 list prepend \$0-r1;
+#X obj 414 371 list prepend \$0-r2;
+#X obj 424 391 list prepend \$0-r3;
+#X obj 394 433 tabread;
+#X msg 554 412 set \$1;
+#X obj 554 351 list prepend \$0-r1;
+#X obj 564 371 list prepend \$0-r2;
+#X obj 574 391 list prepend \$0-r3;
+#X msg 704 412 set \$1;
+#X obj 704 351 list prepend \$0-r1;
+#X obj 714 371 list prepend \$0-r2;
+#X obj 724 391 list prepend \$0-r3;
+#X obj 854 391 +;
+#X obj 854 412 % 26;
+#X obj 1004 99 -;
+#X obj 1004 120 + 26;
+#X obj 1004 141 % 26;
+#X obj 394 246 -;
+#X obj 394 267 + 26;
+#X obj 394 288 % 26;
+#X obj 394 475 +;
+#X obj 394 496 % 26;
+#X obj 544 246 -;
+#X obj 544 267 + 26;
+#X obj 544 288 % 26;
+#X obj 544 475 +;
+#X obj 544 496 % 26;
+#X obj 694 246 -;
+#X obj 694 267 + 26;
+#X obj 694 288 % 26;
+#X obj 694 475 +;
+#X obj 694 496 % 26;
+#X obj 559 225 r \$0-mrs;
+#X obj 559 454 r \$0-mrs;
+#X obj 1304 496 % 26;
+#X obj 1304 475 +;
+#X obj 1304 288 % 26;
+#X obj 1319 225 r \$0-rrs;
+#X obj 1304 267 + 26;
+#X obj 409 454 r \$0-rrs;
+#X obj 709 454 r \$0-lrs;
+#X obj 409 225 r \$0-rrs;
+#X obj 709 225 r \$0-lrs;
+#X obj 1319 454 r \$0-rrs;
+#X obj 1304 246 -;
+#X obj 1154 496 % 26;
+#X obj 1154 475 +;
+#X obj 1154 288 % 26;
+#X obj 1154 267 + 26;
+#X obj 1154 246 -;
+#X obj 1004 496 % 26;
+#X obj 1004 475 +;
+#X obj 1004 288 % 26;
+#X obj 1004 267 + 26;
+#X obj 1004 246 -;
+#X obj 1169 225 r \$0-mrs;
+#X obj 1169 454 r \$0-mrs;
+#X obj 1019 225 r \$0-lrs;
+#X obj 1019 454 r \$0-lrs;
+#X obj 404 330 sel 1 2 3;
+#X obj 554 330 sel 1 2 3;
+#X obj 704 330 sel 1 2 3;
+#X msg 1014 412 set \$1;
+#X obj 1014 330 sel 1 2 3;
+#X msg 1164 412 set \$1;
+#X obj 1164 330 sel 1 2 3;
+#X msg 1314 412 set \$1;
+#X obj 1314 330 sel 1 2 3;
+#X obj 1014 351 list prepend \$0-_r1;
+#X obj 1024 371 list prepend \$0-_r2;
+#X obj 1034 391 list prepend \$0-_r3;
+#X obj 1164 351 list prepend \$0-_r1;
+#X obj 1174 371 list prepend \$0-_r2;
+#X obj 1184 391 list prepend \$0-_r3;
+#X obj 1314 351 list prepend \$0-_r1;
+#X obj 1324 371 list prepend \$0-_r2;
+#X obj 1334 391 list prepend \$0-_r3;
+#X obj 404 309 r \$0-rw;
+#X obj 704 309 r \$0-lw;
+#X obj 1014 309 r \$0-lw;
+#X obj 1164 309 r \$0-mw;
+#X obj 1314 309 r \$0-rw;
+#X obj 554 308 r \$0-mw;
+#X obj 854 246 -;
+#X obj 854 267 + 26;
+#X obj 854 288 % 26;
+#X obj 854 475 +;
+#X obj 854 496 % 26;
+#X obj 869 225 r \$0-urs;
+#X obj 869 370 r \$0-up;
+#X obj 869 454 r \$0-urs;
+#X obj 409 78 r \$0-rp;
+#X obj 559 78 r \$0-rp;
+#X obj 559 162 r \$0-mp;
+#X obj 709 78 r \$0-mp;
+#X obj 1319 78 r \$0-mp;
+#X obj 544 433 tabread;
+#X obj 694 433 tabread;
+#X obj 1004 433 tabread;
+#X obj 1154 433 tabread;
+#X obj 1304 433 tabread;
+#X obj 854 433 tabread \$0-ukw;
+#X obj 709 162 r \$0-lp;
+#X obj 869 78 r \$0-lp;
+#X obj 1169 78 r \$0-lp;
+#X obj 1019 162 r \$0-lp;
+#X obj 1169 162 r \$0-mp;
+#X obj 1319 162 r \$0-rp;
+#X obj 1469 78 r \$0-rp;
+#X obj 294 412 r \$0-pt;
+#X obj 1454 454 s \$0-ct;
+#X text 115 412 receive 'plaintext' values ->;
+#X text 95 78 receive wheel positions from counters subpatch ->;
+#X text 149 183 transpose according to wheel position ->;
+#X text 131 120 keep within 0-25 range using add and mod ->;
+#X text 257 309 receive wheel order ->;
+#X text 245 225 receive ring settings ->;
+#X text 179 330 select wheel wirings from arrays ->;
+#X text 125 246 subtract offset according to ring setting ->;
+#X text 155 475 add offset according to ring setting ->;
+#X text 197 496 scale to 0-25 range using mod ->;
+#X text 149 267 scale to 0-25 range using add and mod ->;
+#X text 197 204 scale to 0-25 range using mod ->;
+#X text 29 99 add/subtract offset according to wheel position/direction
+->;
+#X text 884 391 ^ receive ukw pos.;
+#X obj 1019 78 r \$0-up;
+#X text 13 433 encrypt integers according to wheel wirings ->;
+#X text 1502 454 <- send 'ciphertext' valuee;
+#X text 409 38 right wheel;
+#X text 559 38 middle wheel;
+#X text 709 38 left wheel;
+#X text 869 38 ukw;
+#X text 1169 35 middle wheel;
+#X text 1019 35 left wheel;
+#X text 1319 35 right wheel;
+#X text 1479 35 entry wheel;
+#X text 409 18 right to left direction of travel <;
+#X text 1019 15 left to right direction of travel >;
+#X obj 394 517 s \$0-rrl;
+#X obj 394 58 r \$0-erl;
+#X obj 294 454 s \$0-erl;
+#X obj 544 58 r \$0-rrl;
+#X obj 544 517 s \$0-mrl;
+#X obj 694 58 r \$0-mrl;
+#X obj 694 517 s \$0-lrl;
+#X obj 854 58 r \$0-lrl;
+#X obj 854 517 s \$0-ulr;
+#X obj 1004 58 r \$0-ulr;
+#X obj 1004 517 s \$0-llr;
+#X obj 1154 58 r \$0-llr;
+#X obj 1154 517 s \$0-mlr;
+#X obj 1304 58 r \$0-mlr;
+#X obj 1304 517 s \$0-rlr;
+#X obj 1454 58 r \$0-rlr;
+#X connect 0 0 1 0;
+#X connect 1 0 50 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 55 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 9 0 10 0;
+#X connect 10 0 11 0;
+#X connect 11 0 60 0;
+#X connect 12 0 13 0;
+#X connect 13 0 14 0;
+#X connect 14 0 116 0;
+#X connect 15 0 16 0;
+#X connect 16 0 87 0;
+#X connect 17 0 18 0;
+#X connect 18 0 19 0;
+#X connect 19 0 23 0;
+#X connect 20 0 21 0;
+#X connect 21 0 22 0;
+#X connect 22 0 25 0;
+#X connect 23 0 24 0;
+#X connect 24 0 82 0;
+#X connect 25 0 26 0;
+#X connect 26 0 77 0;
+#X connect 27 0 28 0;
+#X connect 28 0 29 0;
+#X connect 29 0 31 0;
+#X connect 30 0 173 0;
+#X connect 31 0 143 0;
+#X connect 32 0 36 0;
+#X connect 33 0 32 0;
+#X connect 34 0 32 0;
+#X connect 35 0 32 0;
+#X connect 36 0 53 0;
+#X connect 37 0 129 0;
+#X connect 38 0 37 0;
+#X connect 39 0 37 0;
+#X connect 40 0 37 0;
+#X connect 41 0 130 0;
+#X connect 42 0 41 0;
+#X connect 43 0 41 0;
+#X connect 44 0 41 0;
+#X connect 45 0 46 0;
+#X connect 46 0 134 0;
+#X connect 47 0 48 0;
+#X connect 48 0 49 0;
+#X connect 49 0 15 0;
+#X connect 50 0 51 0;
+#X connect 51 0 52 0;
+#X connect 52 0 36 0;
+#X connect 53 0 54 0;
+#X connect 54 0 171 0;
+#X connect 55 0 56 0;
+#X connect 56 0 57 0;
+#X connect 57 0 129 0;
+#X connect 58 0 59 0;
+#X connect 59 0 175 0;
+#X connect 60 0 61 0;
+#X connect 61 0 62 0;
+#X connect 62 0 130 0;
+#X connect 63 0 64 0;
+#X connect 64 0 177 0;
+#X connect 65 0 55 1;
+#X connect 66 0 58 1;
+#X connect 67 0 185 0;
+#X connect 68 0 67 0;
+#X connect 69 0 133 0;
+#X connect 70 0 77 1;
+#X connect 71 0 69 0;
+#X connect 72 0 53 1;
+#X connect 73 0 63 1;
+#X connect 74 0 50 1;
+#X connect 75 0 60 1;
+#X connect 76 0 68 1;
+#X connect 77 0 71 0;
+#X connect 78 0 183 0;
+#X connect 79 0 78 0;
+#X connect 80 0 132 0;
+#X connect 81 0 80 0;
+#X connect 82 0 81 0;
+#X connect 83 0 181 0;
+#X connect 84 0 83 0;
+#X connect 85 0 131 0;
+#X connect 86 0 85 0;
+#X connect 87 0 86 0;
+#X connect 88 0 82 1;
+#X connect 89 0 79 1;
+#X connect 90 0 87 1;
+#X connect 91 0 84 1;
+#X connect 92 0 33 0;
+#X connect 92 1 34 0;
+#X connect 92 2 35 0;
+#X connect 93 0 38 0;
+#X connect 93 1 39 0;
+#X connect 93 2 40 0;
+#X connect 94 0 42 0;
+#X connect 94 1 43 0;
+#X connect 94 2 44 0;
+#X connect 95 0 131 0;
+#X connect 96 0 101 0;
+#X connect 96 1 102 0;
+#X connect 96 2 103 0;
+#X connect 97 0 132 0;
+#X connect 98 0 104 0;
+#X connect 98 1 105 0;
+#X connect 98 2 106 0;
+#X connect 99 0 133 0;
+#X connect 100 0 107 0;
+#X connect 100 1 108 0;
+#X connect 100 2 109 0;
+#X connect 101 0 95 0;
+#X connect 102 0 95 0;
+#X connect 103 0 95 0;
+#X connect 104 0 97 0;
+#X connect 105 0 97 0;
+#X connect 106 0 97 0;
+#X connect 107 0 99 0;
+#X connect 108 0 99 0;
+#X connect 109 0 99 0;
+#X connect 110 0 92 0;
+#X connect 111 0 94 0;
+#X connect 112 0 96 0;
+#X connect 113 0 98 0;
+#X connect 114 0 100 0;
+#X connect 115 0 93 0;
+#X connect 116 0 117 0;
+#X connect 117 0 118 0;
+#X connect 118 0 45 0;
+#X connect 119 0 120 0;
+#X connect 120 0 179 0;
+#X connect 121 0 116 1;
+#X connect 122 0 45 1;
+#X connect 123 0 119 1;
+#X connect 124 0 0 1;
+#X connect 125 0 2 1;
+#X connect 126 0 5 1;
+#X connect 127 0 7 1;
+#X connect 128 0 20 1;
+#X connect 129 0 58 0;
+#X connect 130 0 63 0;
+#X connect 131 0 84 0;
+#X connect 132 0 79 0;
+#X connect 133 0 68 0;
+#X connect 134 0 119 0;
+#X connect 135 0 10 1;
+#X connect 136 0 12 1;
+#X connect 137 0 17 1;
+#X connect 138 0 15 1;
+#X connect 139 0 23 1;
+#X connect 140 0 25 1;
+#X connect 141 0 27 1;
+#X connect 142 0 30 0;
+#X connect 158 0 47 1;
+#X connect 172 0 0 0;
+#X connect 174 0 2 0;
+#X connect 176 0 7 0;
+#X connect 178 0 12 0;
+#X connect 180 0 47 0;
+#X connect 182 0 17 0;
+#X connect 184 0 20 0;
+#X connect 186 0 27 0;
+#X restore 1102 658 pd ciphers;
+#N canvas 21 431 453 272 turnover 0;
+#X obj 54 144 sel 1 2 3;
+#X msg 54 165 24;
+#X msg 84 165 4;
+#X msg 114 165 13;
+#X obj 144 144 sel 1 2 3;
+#X msg 144 165 24;
+#X msg 174 165 4;
+#X msg 204 165 13;
+#X obj 144 186 s \$0-rt;
+#X obj 54 186 s \$0-mt;
+#X obj 54 123 r \$0-mw;
+#X obj 144 123 r \$0-rw;
+#X text 54 43 this subpatch receives information about the current
+wheel order. depending on whether wheel types 1 \, 2 \, or 3 are set
+as the right and middle wheels on the spindle (w) \, their associated
+turnover positions (t) will be sent to the counter subpatch.;
+#X connect 0 0 1 0;
+#X connect 0 1 2 0;
+#X connect 0 2 3 0;
+#X connect 1 0 9 0;
+#X connect 2 0 9 0;
+#X connect 3 0 9 0;
+#X connect 4 0 5 0;
+#X connect 4 1 6 0;
+#X connect 4 2 7 0;
+#X connect 5 0 8 0;
+#X connect 6 0 8 0;
+#X connect 7 0 8 0;
+#X connect 10 0 0 0;
+#X connect 11 0 4 0;
+#X restore 1102 638 pd turnover;
+#X obj 199 159 s \$0-mw;
+#X obj 234 138 s \$0-rw;
+#X obj 119 331 s \$0-lrs;
+#X obj 146 310 s \$0-mrs;
+#X obj 173 289 s \$0-rrs;
+#X obj 91 352 s \$0-urs;
+#X obj 19 490 s \$0-up;
+#X obj 116 489 s \$0-lsp;
+#X obj 213 490 s \$0-msp;
+#X obj 310 490 s \$0-rsp;
+#X obj 19 15 inlet;
+#X obj 149 570 r \$0-lp;
+#X obj 240 570 r \$0-mp;
+#X obj 332 570 r \$0-rp;
+#X obj 165 117 unpack 0 0 0;
+#X obj 92 247 unpack 0 0 0 0;
+#N canvas 179 51 1239 522 arrays 0;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array \$0-r3 26 float 3;
+#A 0 2 9 6 3 15 18 7 10 19 20 17 0 22 25 23 5 12 24 13 16 14 1 21 11
+8 4;
+#X coords 0 25 26 0 200 140 1 0 0;
+#X restore 30 351 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array \$0-r2 26 float 3;
+#A 0 18 11 21 6 1 19 5 23 9 16 14 7 4 22 8 17 25 24 0 12 10 15 2 13
+3 20;
+#X coords 0 25 26 0 200 140 1 0 0;
+#X restore 30 191 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array \$0-r1 26 float 3;
+#A 0 11 15 6 18 25 12 7 0 4 14 16 10 21 23 17 5 24 1 20 19 13 8 2 9
+3 22;
+#X coords 0 25 26 0 200 140 1 0 0;
+#X restore 30 31 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array \$0-ukw 26 float 3;
+#A 0 8 12 4 19 2 6 5 17 0 24 18 16 1 25 23 22 11 7 10 3 21 20 15 14
+9 13;
+#X coords 0 25 26 0 200 140 1 0 0;
+#X restore 450 351 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array \$0-etw 26 float 3;
+#A 0 9 22 20 11 2 12 13 14 7 15 16 25 24 23 8 17 0 3 10 4 6 21 1 19
+18 5;
+#X coords 0 25 26 0 200 140 1 0 0;
+#X restore 450 31 graph;
+#X obj 670 31 loadbang;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array \$0-_r1 26 float 3;
+#A 0 7 17 22 24 8 15 2 6 21 23 11 0 5 20 9 1 10 14 3 19 18 12 25 13
+16 4;
+#X coords 0 25 26 0 200 140 1 0 0;
+#X restore 240 31 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array \$0-_r2 26 float 3;
+#A 0 18 4 22 24 12 6 3 11 14 8 20 1 19 23 10 21 9 15 0 5 25 2 13 7
+17 16;
+#X coords 0 25 26 0 200 140 1 0 0;
+#X restore 240 191 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array \$0-_r3 26 float 3;
+#A 0 11 21 0 3 25 15 2 6 24 1 7 23 16 18 20 4 19 10 5 8 9 22 12 14
+17 13;
+#X coords 0 25 26 0 200 140 1 0 0;
+#X restore 240 351 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array \$0-_etw 26 float 3;
+#A 0 16 22 4 17 19 25 20 8 14 0 18 3 5 6 7 9 10 15 24 23 2 21 1 13
+12 11;
+#X coords 0 25 26 0 200 140 1 0 0;
+#X restore 450 191 graph;
+#X obj 670 52 list prepend \$0-etw \$0-_etw \$0-r1 \$0-_r1 \$0-r2 \$0-_r2
+\$0-r3 \$0-_r3 \$0-ukw;
+#X msg 670 84 \; \$1 0 9 22 20 11 2 12 13 14 7 15 16 25 24 23 8 17
+0 3 10 4 6 21 1 19 18 5 \; \$2 0 16 22 4 17 19 25 20 8 14 0 18 3 5
+6 7 9 10 15 24 23 2 21 1 13 12 11 \; \$3 0 11 15 6 18 25 12 7 0 4 14
+16 10 21 23 17 5 24 1 20 19 13 8 2 9 3 22 \; \$4 0 7 17 22 24 8 15
+2 6 21 23 11 0 5 20 9 1 10 14 3 19 18 12 25 13 16 4 \; \$5 0 18 11
+21 6 1 19 5 23 9 16 14 7 4 22 8 17 25 24 0 12 10 15 2 13 3 20 \; \$6
+0 18 4 22 24 12 6 3 11 14 8 20 1 19 23 10 21 9 15 0 5 25 2 13 7 17
+16 \; \$7 0 2 9 6 3 15 18 7 10 19 20 17 0 22 25 23 5 12 24 13 16 14
+1 21 11 8 4 \; \$8 0 11 21 0 3 25 15 2 6 24 1 7 23 16 18 20 4 19 10
+5 8 9 22 12 14 17 13 \; \$9 0 8 12 4 19 2 6 5 17 0 24 18 16 1 25 23
+22 11 7 10 3 21 20 15 14 9 13;
+#X text 1040 95 <- entry wheel;
+#X text 1039 117 <- inverse of entry wheel;
+#X text 1040 139 <- wheel type 1;
+#X text 1040 161 <- inverse of wheel type 1;
+#X text 1040 183 <- wheel type 2;
+#X text 1040 205 <- inverse of wheel type 2;
+#X text 1040 227 <- wheel type 3;
+#X text 1040 249 <- inverse of wheel type 3;
+#X text 1040 271 <- reflector wheel;
+#X text 675 411 Each array contains the transfer function (or 'wiring')
+for the etw \, rotors \, and ukw in the commercial Enigma. The arrays
+are repopulated via the message boxes above during load time \, just
+in case the are overwritten by accident!;
+#X connect 5 0 10 0;
+#X connect 10 0 11 0;
+#X restore 1102 698 pd arrays;
+#X obj 165 180 s \$0-lw;
+#X obj 298 266 s \$0-b;
+#X obj 92 268 - 1;
+#X obj 119 268 - 1;
+#X obj 146 268 - 1;
+#X obj 173 268 - 1;
+#X obj 310 217 i;
+#X obj 310 196 del 1;
+#X obj 298 175 t b f;
+#X obj 310 238 s \$0-pt;
+#X obj 19 570 r \$0-ct;
+#X text 19 539 'cipher text', f 7;
+#X text 372 257 <- sends bang to counters subpatch to step wheels;
+#X text 372 238 <- sends 'plaintext' integers to ciphers subpatch;
+#X obj 378 296 r \$0-erl;
+#X obj 468 295 r \$0-rrl;
+#X obj 558 295 r \$0-mrl;
+#X obj 648 295 r \$0-lrl;
+#X obj 738 295 r \$0-ulr;
+#X obj 828 295 r \$0-llr;
+#X obj 918 295 r \$0-mlr;
+#X obj 1008 295 r \$0-rlr;
+#X obj 1098 295 r \$0-ct;
+#X obj 19 704 outlet;
+#X obj 119 592 t b;
+#X obj 119 674 outlet;
+#X obj 288 380 outlet;
+#X obj 288 295 pipe 1;
+#X obj 288 133 list fromsymbol;
+#X obj 288 112 symbol;
+#X text 392 111 <- makes single letter message in 'symbol';
+#X text 392 133 <- converts lowercase symbol into float;
+#X obj 288 154 - 97;
+#X text 392 155 <- make 'a' equal 0;
+#X obj 19 662 + 97;
+#X obj 19 683 list tosymbol;
+#X obj 149 591 + 97;
+#X obj 240 591 + 97;
+#X obj 332 591 + 97;
+#X obj 149 612 list tosymbol;
+#X obj 240 612 list tosymbol;
+#X obj 332 612 list tosymbol;
+#X obj 119 632 pack s s s, f 31;
+#X obj 119 653 list trim;
+#X obj 288 316 + 97;
+#X obj 288 337 list tosymbol;
+#X obj 378 316 + 97;
+#X obj 378 337 list tosymbol;
+#X obj 468 316 + 97;
+#X obj 468 337 list tosymbol;
+#X obj 558 316 + 97;
+#X obj 558 337 list tosymbol;
+#X obj 648 316 + 97;
+#X obj 648 337 list tosymbol;
+#X obj 738 316 + 97;
+#X obj 738 337 list tosymbol;
+#X obj 828 316 + 97;
+#X obj 828 337 list tosymbol;
+#X obj 918 316 + 97;
+#X obj 918 337 list tosymbol;
+#X obj 1008 316 + 97;
+#X obj 1008 337 list tosymbol;
+#X obj 1098 316 + 97;
+#X obj 1098 337 list tosymbol;
+#X obj 288 358 pack s s s s s s s s s s, f 136;
+#X obj 19 427 unpack s s s s, f 49;
+#X obj 19 448 list fromsymbol;
+#X obj 116 448 list fromsymbol;
+#X obj 213 448 list fromsymbol;
+#X obj 310 448 list fromsymbol;
+#X obj 19 469 - 97;
+#X obj 116 469 - 97;
+#X obj 213 469 - 97;
+#X obj 310 469 - 97;
+#X obj 19 96 route position ringsetting wheelorder;
+#X text 149 540 left position, f 8;
+#X text 240 540 middle position, f 8;
+#X text 332 540 right position, f 8;
+#X text 411 448 <-- unpack wheelposition symbol list from input \,
+convert from symbol to float \, scale (0 = a) \, and send to ciphers
+subpatch, f 48;
+#X text 165 200 unpack 'position';
+#X text 165 220 to ciphers subpatch;
+#X text 91 392 to ciphers subpatch;
+#X text 91 372 unpack 'ringsetting';
+#X text 338 380 <- list of symbols \, starting with plaintext and ending
+with cipher text \, including encipherments for etw \, ukw \, and wheels
+;
+#X text 165 674 <- packed list of symbols for current wheel positions
+;
+#X text 65 704 <- ciphertext output as symbol;
+#X msg 39 65 wheelorder 3 2 1 \, ringsetting 1 1 1 \, position a a
+a a;
+#X obj 39 44 loadbang;
+#X text 739 25 enigma - cipher based on the Enigma D rotor-based cipher
+machine., f 65;
+#X text 739 115 wheelorder/ringsetting/position is set according to
+their physical location on the Enigma machine - e.g. 'position a b
+c d' puts the unkehrwalze (ukw) in the 'a' position \, the leftmost
+rotor in the 'b' position \, the middle in 'c' etc., f 74;
+#X text 1099 615 subpatches:;
+#X text 739 535 the [counters] subpatch emulates the stepping (and
+double-stepping) of the rotors and sends the current position to each
+'rotor' within the [ciphers] subpatch. to accurately emulate the cryptographic
+effect of the rotors \, each transposition and modulation prior an
+array is followed by the inverse processs. as the plaintext is 'reflected'
+off the ukw \, there is a similar process of inversion., f 74;
+#X text 739 465 working principle: plaintext symbols (pt) are converted
+to floats and get routed to the [ciphers] subpatch. plaintext floats
+then pass through a series of transpositions functions (addition \,
+modulo) which emulate the cryptographic effect of wheel rotation. the
+wiring for each rotor is implimented using arrays \, contained within
+the [arrays] subpatch., f 74;
+#X text 739 705 enigma by Akira Brown 2023;
+#X text 739 55 the patch accepts message lists/symbols at its single
+inlet and routes them according to the first element of the list (wheelorder
+\, ringsetting \, and position). orphan symbols a to z are interpreted
+as the cipher's plain text input., f 74;
+#X text 372 65 <- default settings;
+#X text 739 235 * note also that there is a 1ms delay between the input
+and ciphertext output due to the use of [delay] and [pipe] objects
+in the patch - hopefully this could be improved in a future update.
+, f 74;
+#X text 739 175 * note that ringsettings only apply to the 3 rotors
+to the right of the ukw so only require 3 integrers (1 to 26). also
+note that whilst only 3 rotor types are available (1 to 3) \, these
+can be placed in any order and include repetitions - e.g. 'wheelorder
+3 3 2'., f 74;
+#X text 739 395 this parent window is mostly responsible for unpacking
+plaintext and initialization arguments and routing these to the [ciphers]
+and [counters] subpatches (which themselves call upon the [turnover]
+and [arrays] subpatches) \, and receiving and packing ciphertext \,
+internal states \, and stepped wheel positions that leave the outlets.
+, f 74;
+#X connect 13 0 94 0;
+#X connect 14 0 56 0;
+#X connect 15 0 57 0;
+#X connect 16 0 58 0;
+#X connect 17 0 20 0;
+#X connect 17 1 3 0;
+#X connect 17 2 4 0;
+#X connect 18 0 22 0;
+#X connect 18 1 23 0;
+#X connect 18 2 24 0;
+#X connect 18 3 25 0;
+#X connect 22 0 8 0;
+#X connect 23 0 5 0;
+#X connect 24 0 6 0;
+#X connect 25 0 7 0;
+#X connect 26 0 29 0;
+#X connect 27 0 26 0;
+#X connect 28 0 27 0;
+#X connect 28 0 21 0;
+#X connect 28 1 26 1;
+#X connect 30 0 44 0;
+#X connect 30 0 54 0;
+#X connect 34 0 66 0;
+#X connect 35 0 68 0;
+#X connect 36 0 70 0;
+#X connect 37 0 72 0;
+#X connect 38 0 74 0;
+#X connect 39 0 76 0;
+#X connect 40 0 78 0;
+#X connect 41 0 80 0;
+#X connect 42 0 82 0;
+#X connect 44 0 62 0;
+#X connect 47 0 64 0;
+#X connect 48 0 52 0;
+#X connect 49 0 48 0;
+#X connect 52 0 28 0;
+#X connect 52 0 47 0;
+#X connect 54 0 55 0;
+#X connect 55 0 43 0;
+#X connect 56 0 59 0;
+#X connect 57 0 60 0;
+#X connect 58 0 61 0;
+#X connect 59 0 62 0;
+#X connect 60 0 62 1;
+#X connect 61 0 62 2;
+#X connect 62 0 63 0;
+#X connect 63 0 45 0;
+#X connect 64 0 65 0;
+#X connect 65 0 84 0;
+#X connect 66 0 67 0;
+#X connect 67 0 84 1;
+#X connect 68 0 69 0;
+#X connect 69 0 84 2;
+#X connect 70 0 71 0;
+#X connect 71 0 84 3;
+#X connect 72 0 73 0;
+#X connect 73 0 84 4;
+#X connect 74 0 75 0;
+#X connect 75 0 84 5;
+#X connect 76 0 77 0;
+#X connect 77 0 84 6;
+#X connect 78 0 79 0;
+#X connect 79 0 84 7;
+#X connect 80 0 81 0;
+#X connect 81 0 84 8;
+#X connect 82 0 83 0;
+#X connect 83 0 84 9;
+#X connect 84 0 46 0;
+#X connect 85 0 86 0;
+#X connect 85 1 87 0;
+#X connect 85 2 88 0;
+#X connect 85 3 89 0;
+#X connect 86 0 90 0;
+#X connect 87 0 91 0;
+#X connect 88 0 92 0;
+#X connect 89 0 93 0;
+#X connect 90 0 9 0;
+#X connect 91 0 10 0;
+#X connect 92 0 11 0;
+#X connect 93 0 12 0;
+#X connect 94 0 85 0;
+#X connect 94 1 18 0;
+#X connect 94 2 17 0;
+#X connect 94 3 49 0;
+#X connect 106 0 94 0;
+#X connect 107 0 106 0;

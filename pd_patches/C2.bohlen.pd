@@ -1,0 +1,46 @@
+#N canvas 210 84 570 603 12;
+#X symbolatom 281 316 0 0 0 0 - - -;
+#X obj 211 397 osc~;
+#X floatatom 211 363 0 0 0 0 - - -;
+#X obj 301 366 t b;
+#X obj 301 414 vline~;
+#X obj 211 421 *~;
+#X obj 301 438 *~;
+#X obj 301 462 lop~ 100;
+#X msg 301 390 1 \, 0 300;
+#X obj 208 200 key;
+#X obj 281 282 list tosymbol;
+#X obj 208 224 moses 97;
+#X obj 261 248 moses 123;
+#X obj 211 330 bohlen;
+#X obj 211 282 - 97;
+#X obj 211 306 + 56;
+#X text 317 316 <-- plain text;
+#X text 41 362 encrypted frequency -->;
+#X obj 211 483 output~;
+#X text 74 34 this patch introduces another musical scale that lends
+itself well to musical cryptography \, Heinz Bohlen's '13-Step Scale'
+(1978). here symbols 'a' and 'n' are mapped to frequencies 146.667Hz
+and 440Hz respectively \, aligning somewhat with recent BP notation
+systems. the musical cipher maps nicely to two chromatic tritaves in
+BP tuning. the result is a 26-note scale spanning tritaves (equivalent
+to 3 octaves).;
+#X connect 1 0 5 0;
+#X connect 2 0 1 0;
+#X connect 3 0 8 0;
+#X connect 4 0 6 0;
+#X connect 4 0 6 1;
+#X connect 5 0 18 0;
+#X connect 5 0 18 1;
+#X connect 6 0 7 0;
+#X connect 7 0 5 1;
+#X connect 8 0 4 0;
+#X connect 9 0 11 0;
+#X connect 10 0 0 0;
+#X connect 11 1 12 0;
+#X connect 12 0 10 0;
+#X connect 12 0 14 0;
+#X connect 13 0 2 0;
+#X connect 13 0 3 0;
+#X connect 14 0 15 0;
+#X connect 15 0 13 0;

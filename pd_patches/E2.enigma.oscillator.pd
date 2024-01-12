@@ -1,0 +1,149 @@
+#N canvas 0 25 1038 623 12;
+#X obj 309 216 phasor~;
+#X floatatom 309 72 0 0 100 0 - - -;
+#X obj 309 96 / 100;
+#X obj 309 120 pow 2;
+#X obj 309 144 * 20000;
+#X floatatom 309 168 0 0 0 0 - - -;
+#X obj 309 192 lop~ 5;
+#X obj 149 274 /~ 25;
+#X obj 149 298 *~ 2;
+#X obj 149 322 -~ 1;
+#X obj 48 240 signal_enigma~ a 3 2 1;
+#X obj 59 274 /~ 25;
+#X obj 59 298 *~ 2;
+#X obj 59 322 -~ 1;
+#X obj 77 423 pack 0 50;
+#X obj 77 447 line~;
+#X obj 59 470 *~;
+#X obj 59 534 output~;
+#X obj 77 375 == 0;
+#X obj 77 351 r cipher;
+#X obj 167 423 pack 0 50;
+#X obj 167 447 line~;
+#X obj 149 470 *~;
+#X msg 555 528 0;
+#X obj 555 582 s cipher;
+#X obj 167 375 == 1;
+#X msg 605 528 1;
+#X msg 655 528 2;
+#X msg 705 528 3;
+#X text 556 498 etw;
+#X obj 59 494 +~;
+#X obj 239 274 /~ 25;
+#X obj 239 298 *~ 2;
+#X obj 239 322 -~ 1;
+#X obj 257 423 pack 0 50;
+#X obj 257 447 line~;
+#X obj 239 470 *~;
+#X obj 257 375 == 2;
+#X obj 329 274 /~ 25;
+#X obj 329 298 *~ 2;
+#X obj 329 322 -~ 1;
+#X obj 347 423 pack 0 50;
+#X obj 347 447 line~;
+#X obj 329 470 *~;
+#X obj 347 375 == 3;
+#X obj 239 494 +~;
+#X text 354 169 <- sample-rate in Hz;
+#X floatatom 48 72 0 0 0 0 - - -;
+#X obj 48 96 phasor~;
+#X obj 48 120 expr~ ($v1 * 25) % 26;
+#X text 95 73 <- cycle alphabet (Hz);
+#X floatatom 77 399 0 0 0 0 - - -;
+#X floatatom 167 399 0 0 0 0 - - -;
+#X floatatom 257 399 0 0 0 0 - - -;
+#X floatatom 347 399 0 0 0 0 - - -;
+#X text 606 478 right;
+#X text 656 478 middle;
+#X text 706 478 left;
+#X text 606 498 wheel;
+#X text 656 498 wheel;
+#X text 706 498 wheel;
+#X text 346 73 <- stepping rate (%);
+#X text 552 249 With alphabet cycling set to audio frequencies the
+etw output scrambles the shape of the ramp \, representing the internal
+wiring of the etw \, again resulting in a wavetable oscillator. stepping
+the Enigma at low rates produces a random sequence of wavetables as
+the Enigma cycles through its polyalphabetic cipher.;
+#X text 552 349 Of course \, this ability to seperate the plain text
+input from the stepping action is not really true to how the Enigma
+cipher works \, but it does demonstrate how audification of the cipher
+leads to a novel oscillator!;
+#X text 552 49 Listening to the cryptographic effect of each wheel
+reveals how subsequent ciphers increase complexity and result in longer
+cipher periods.;
+#X text 552 109 With 'cycle alphabet' at 0Hz and switching between
+the three wheels \, three different lengths of sudo-random sequences
+can be auditioned - note that etw is silent since this wheel does not
+move when the Enigma steps. the right wheel has a period of just 26
+characters and acts more like a wavetable oscillator \, whilst the
+left has a period of 16900 characters and is much more capable at producing
+broadband noise. the middle wheel has a period of 650 characters and
+lays somewhere between the two.;
+#X floatatom 555 552 0 0 0 0 - - -;
+#X obj 309 20 loadbang;
+#X msg 309 44 25;
+#X obj 569 447 loadbang;
+#X connect 0 0 10 1;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 0 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 9 0 22 0;
+#X connect 10 1 11 0;
+#X connect 10 2 7 0;
+#X connect 10 3 31 0;
+#X connect 10 4 38 0;
+#X connect 11 0 12 0;
+#X connect 12 0 13 0;
+#X connect 13 0 16 0;
+#X connect 14 0 15 0;
+#X connect 15 0 16 1;
+#X connect 16 0 30 0;
+#X connect 18 0 51 0;
+#X connect 19 0 18 0;
+#X connect 19 0 25 0;
+#X connect 19 0 37 0;
+#X connect 19 0 44 0;
+#X connect 20 0 21 0;
+#X connect 21 0 22 1;
+#X connect 22 0 30 1;
+#X connect 23 0 66 0;
+#X connect 25 0 52 0;
+#X connect 26 0 66 0;
+#X connect 27 0 66 0;
+#X connect 28 0 66 0;
+#X connect 30 0 17 0;
+#X connect 30 0 17 1;
+#X connect 31 0 32 0;
+#X connect 32 0 33 0;
+#X connect 33 0 36 0;
+#X connect 34 0 35 0;
+#X connect 35 0 36 1;
+#X connect 36 0 45 0;
+#X connect 37 0 53 0;
+#X connect 38 0 39 0;
+#X connect 39 0 40 0;
+#X connect 40 0 43 0;
+#X connect 41 0 42 0;
+#X connect 42 0 43 1;
+#X connect 43 0 45 1;
+#X connect 44 0 54 0;
+#X connect 45 0 17 0;
+#X connect 45 0 17 1;
+#X connect 47 0 48 0;
+#X connect 48 0 49 0;
+#X connect 49 0 10 0;
+#X connect 51 0 14 0;
+#X connect 52 0 20 0;
+#X connect 53 0 34 0;
+#X connect 54 0 41 0;
+#X connect 66 0 24 0;
+#X connect 67 0 68 0;
+#X connect 68 0 1 0;
+#X connect 69 0 26 0;

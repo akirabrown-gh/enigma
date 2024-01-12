@@ -1,0 +1,45 @@
+#N canvas 115 31 595 580 12;
+#X obj 248 160 key;
+#X obj 341 242 list tosymbol;
+#X symbolatom 341 276 0 0 0 0 - - -;
+#X obj 248 184 moses 97;
+#X obj 301 208 moses 123;
+#X obj 211 253 - 97;
+#X obj 211 277 + 69;
+#X floatatom 211 301 0 0 0 0 - - -;
+#X obj 211 393 osc~;
+#X obj 211 325 mtof;
+#X floatatom 211 359 0 0 0 0 - - -;
+#X obj 301 322 t b;
+#X obj 301 370 vline~;
+#X obj 211 417 *~;
+#X obj 301 394 *~;
+#X obj 301 418 lop~ 100;
+#X text 377 276 <-- plain text letter;
+#X text 37 358 encrypted frequency -->;
+#X obj 211 479 output~;
+#X msg 301 346 1 \, 0 300;
+#X text 94 44 this patch demonstrates a basic musical cipher that enciphers
+letters chromatically \, starting with a = 440Hz and increasing in
+pitch to z = 1864.66 - this results is a pitch map spanning 26 semitones.
+;
+#X connect 0 0 3 0;
+#X connect 1 0 2 0;
+#X connect 3 1 4 0;
+#X connect 4 0 1 0;
+#X connect 4 0 5 0;
+#X connect 4 0 11 0;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
+#X connect 7 0 9 0;
+#X connect 8 0 13 0;
+#X connect 9 0 10 0;
+#X connect 10 0 8 0;
+#X connect 11 0 19 0;
+#X connect 12 0 14 0;
+#X connect 12 0 14 1;
+#X connect 13 0 18 0;
+#X connect 13 0 18 1;
+#X connect 14 0 15 0;
+#X connect 15 0 13 1;
+#X connect 19 0 12 0;

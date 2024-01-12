@@ -1,0 +1,128 @@
+#N canvas 99 58 899 661 12;
+#X obj 30 67 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+;
+#X obj 30 87 metro;
+#X floatatom 62 63 0 0 0 0 - - -;
+#X obj 130 111 i;
+#X obj 160 111 + 1;
+#X floatatom 130 135 0 0 0 0 - - -;
+#X obj 130 159 t b f;
+#X obj 95 237 list split;
+#X symbolatom 128 261 0 0 0 0 - - -;
+#X obj 208 237 list length;
+#X floatatom 208 261 0 0 0 0 - - -;
+#X obj 128 285 list fromsymbol;
+#X obj 128 309 - 97;
+#X obj 30 411 pack f f;
+#X floatatom 83 387 0 0 0 0 - - -;
+#X msg 30 435 1 \, 0 \$2;
+#X obj 30 459 vline~;
+#X obj 30 483 *~;
+#X obj 30 507 lop~ 100;
+#X text 41 374 decay;
+#X text 41 389 in ms;
+#X obj 128 424 +;
+#X obj 128 488 mtof;
+#X obj 128 512 osc~;
+#X obj 30 531 *~;
+#X obj 30 555 output~;
+#X text 239 261 <- phrase length;
+#X text 38 262 character ->;
+#X text 53 136 address ->;
+#X obj 174 474 t b f;
+#X obj 174 522 list split;
+#X obj 309 546 int;
+#X obj 207 546 list split 1;
+#X obj 207 570 pack s f;
+#X msg 207 618 f6;
+#X msg 207 594 set \$1\$2;
+#X obj 174 426 t f f;
+#X msg 174 499 c c# d d# e f f# g g# a a# b;
+#X obj 309 450 / 12;
+#X obj 174 450 % 12;
+#X text 416 260 e3 - g4 - c3 - d4 - g#3 - c#4;
+#X text 416 280 e __ t __ a __ o __ i ___ n;
+#X text 646 280 s ___ h __ r __ d ___ l __;
+#X text 646 260 f#4 - g3 - f4 - d#3 - b3 - g#4;
+#X obj 191 112 %;
+#X text 416 120 this kind of chromatic mapping does not take into account
+how the probability distribution of letters in different languages
+might influence whether a given message is more or less likely to be
+in any particular key. as an example \, the phrase 'etaoin shrdlu'
+is often cited as an approximation of the 12 most common letters \,
+in order from most to least \, as they appear on average in English
+words. with 'a' mapped to C3 we would get the following sequence of
+notes:;
+#X obj 62 15 loadbang;
+#X msg 62 39 170;
+#X text 94 64 <- read speed;
+#X text 27 47 run;
+#X msg 218 203 e t a o i n s h r d l u;
+#X msg 83 353 200;
+#X msg 146 366 60;
+#X obj 146 342 loadbang;
+#X text 241 619 <- note;
+#X text 416 40 in the O1.musical.cryptography example patch \, letters
+on the computer keyboard are mapped chromatically to a sinusoid using
+the mtof object. here a phrase can be entered into the message box
+and repeated indefinitely.;
+#X text 416 320 this starts of with a with large compound minor third
+\, but on the return to c3 the first two notes sound more like a major
+third and compound fifth over a c tonic \, followed by a major second.
+the g#3 then introduces an augmented fifth \, and with the introduction
+of the c#4 minor second and f#4 augmented fourth \, the scale is pushed
+further into chromaticism - except for the repeated g natural and lack
+of a natural \, 'etaion shrdlu' is very close to a being a 12-tone
+row!;
+#X text 190 390 resulting pitch sequence;
+#X text 220 183 input phrase;
+#X connect 0 0 1 0;
+#X connect 1 0 3 0;
+#X connect 1 0 13 0;
+#X connect 2 0 1 1;
+#X connect 3 0 4 0;
+#X connect 3 0 5 0;
+#X connect 4 0 44 0;
+#X connect 5 0 6 0;
+#X connect 6 0 50 0;
+#X connect 6 1 7 1;
+#X connect 7 1 8 0;
+#X connect 8 0 11 0;
+#X connect 9 0 10 0;
+#X connect 9 0 44 1;
+#X connect 11 0 12 0;
+#X connect 12 0 21 0;
+#X connect 13 0 15 0;
+#X connect 14 0 13 1;
+#X connect 15 0 16 0;
+#X connect 16 0 17 0;
+#X connect 16 0 17 1;
+#X connect 17 0 18 0;
+#X connect 18 0 24 0;
+#X connect 21 0 22 0;
+#X connect 21 0 36 0;
+#X connect 22 0 23 0;
+#X connect 23 0 24 1;
+#X connect 24 0 25 0;
+#X connect 24 0 25 1;
+#X connect 29 0 37 0;
+#X connect 29 1 30 1;
+#X connect 30 1 32 0;
+#X connect 31 0 33 1;
+#X connect 32 0 33 0;
+#X connect 33 0 35 0;
+#X connect 35 0 34 0;
+#X connect 36 0 39 0;
+#X connect 36 1 38 0;
+#X connect 37 0 30 0;
+#X connect 38 0 31 0;
+#X connect 39 0 29 0;
+#X connect 44 0 3 1;
+#X connect 46 0 47 0;
+#X connect 47 0 2 0;
+#X connect 50 0 7 0;
+#X connect 50 0 9 0;
+#X connect 51 0 14 0;
+#X connect 52 0 21 1;
+#X connect 53 0 52 0;
+#X connect 53 0 51 0;

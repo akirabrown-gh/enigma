@@ -1,0 +1,34 @@
+#N canvas 148 172 516 536 12;
+#X obj 148 340 signal_enigma~ a 3 2 1;
+#X obj 299 316 phasor~;
+#X floatatom 299 172 0 0 100 0 - - -;
+#X obj 299 196 / 100;
+#X obj 299 220 pow 2;
+#X obj 299 244 * 20000;
+#X floatatom 299 268 0 0 0 0 - - -;
+#X obj 299 292 lop~ 5;
+#X text 154 269 sample-rate in Hz ->;
+#X text 174 173 resolution (%) ->;
+#X obj 148 364 /~ 25;
+#X obj 148 388 *~ 2;
+#X obj 148 412 -~ 1;
+#X obj 148 436 output~;
+#X text 54 33 This patch demonstrates the use of a signal-rate Enigma
+cipher acting as a sudo-random pattern generator at audio frequencies
+to produce broadband noise - what might be considered 'audification'
+of the cipher in the Enigma machine. With sr at 20kHz \, the periodicity
+of noise is ~1.18 seconds (20000 / 16900). This could of course be
+extended by oscillating the alphabet at the plain text input at an
+unrelated frequency or through no-input encryption.;
+#X connect 0 0 10 0;
+#X connect 1 0 0 1;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
+#X connect 7 0 1 0;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 12 0 13 0;
+#X connect 12 0 13 1;

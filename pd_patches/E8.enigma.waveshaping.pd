@@ -1,0 +1,88 @@
+#N canvas 85 33 969 587 12;
+#X obj 103 134 phasor~;
+#X floatatom 103 38 0 0 0 2 - note -;
+#X text 155 39 <- midi note;
+#X obj 103 62 mtof;
+#X floatatom 103 86 0 0 0 0 - - -;
+#X text 162 86 <- frequency;
+#X obj 103 110 lop~ 5;
+#X obj 53 446 *~;
+#X obj 241 344 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 71 398 pack 0 50;
+#X obj 71 422 line~;
+#X obj 223 446 *~;
+#X obj 241 398 pack 0 50;
+#X obj 241 422 line~;
+#X text 260 342 <- 4-point interpolation;
+#X obj 103 248 *~;
+#X floatatom 121 176 0 0 16899 0 - shape -;
+#X obj 53 490 output~;
+#X obj 511 368 soundfiler;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array table 16900 float 2;
+#X coords 0 1 16900 -1 200 140 1 0 0;
+#X restore 511 410 graph;
+#X msg 511 344 read -resize 321a_a.wav table;
+#X obj 121 200 pack 0 50;
+#X obj 121 224 line~;
+#X text 160 176 <- cipher period (0 - 16899) \, 'waveshape';
+#X text 505 39 another oscillator approach is to take a wavetable containing
+an entire cipher period of 16900 characters and freely decide how many
+of these characters to repeat per cycle - this has the effect of manupulating
+the timbral/harmonic content of the wave in real-time.;
+#X text 505 119 between 2 to ~100 characters \, the resulting timbre
+is a noisy sync-like effect \, with 2 character resulting in a 2-bit
+square wave. above 100 characters \, the spectrum gets closer to noise
+- cycling the oscillator at low frequencies now produces a noise generator.
+at 0 and 1 characters there are not enough values to address the table
+and we get silence.;
+#X obj 511 320 loadbang;
+#X obj 53 210 +~ 0.5;
+#X obj 53 234 cos~;
+#X obj 53 258 +~ 1;
+#X obj 53 282 *~ 0.5;
+#X obj 53 316 *~;
+#X obj 103 282 tabread4~ table;
+#X obj 223 282 tabread~ table;
+#X obj 71 374 == 1;
+#X obj 241 374 == 0;
+#X text 505 229 interpolating between ciphertext characters allows
+for a transition from narrow to wide spectral contect at the cipher
+period is increased. by applying a raised cosine window for each cycle
+\, the transition between cipher periods is all smoothed.;
+#X msg 732 340 \; note 50 \; shape 20 \;;
+#X connect 0 0 15 0;
+#X connect 0 0 27 0;
+#X connect 1 0 3 0;
+#X connect 3 0 4 0;
+#X connect 4 0 6 0;
+#X connect 6 0 0 0;
+#X connect 7 0 17 0;
+#X connect 7 0 17 1;
+#X connect 8 0 34 0;
+#X connect 8 0 35 0;
+#X connect 9 0 10 0;
+#X connect 10 0 7 1;
+#X connect 11 0 17 1;
+#X connect 11 0 17 0;
+#X connect 12 0 13 0;
+#X connect 13 0 11 1;
+#X connect 15 0 32 0;
+#X connect 15 0 33 0;
+#X connect 16 0 21 0;
+#X connect 20 0 18 0;
+#X connect 21 0 22 0;
+#X connect 22 0 15 1;
+#X connect 26 0 8 0;
+#X connect 26 0 20 0;
+#X connect 26 0 37 0;
+#X connect 27 0 28 0;
+#X connect 28 0 29 0;
+#X connect 29 0 30 0;
+#X connect 30 0 31 0;
+#X connect 31 0 7 0;
+#X connect 32 0 31 1;
+#X connect 33 0 11 0;
+#X connect 34 0 9 0;
+#X connect 35 0 12 0;

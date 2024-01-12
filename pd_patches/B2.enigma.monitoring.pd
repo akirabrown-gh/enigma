@@ -1,0 +1,71 @@
+#N canvas 260 76 718 688 12;
+#X msg 94 341 a;
+#X obj 94 435 list_enigma;
+#X msg 114 401 wheelorder 3 2 1 \, ringsetting 1 1 1 \, position a
+a z y;
+#X obj 114 377 loadbang;
+#X text 124 341 <-- click to randomize;
+#X obj 88 565 unpack s s s;
+#X symbolatom 169 589 0 0 0 0 - - -;
+#X text 199 589 <-- wheel position;
+#X symbolatom 128 589 0 0 0 0 - - -;
+#X symbolatom 88 589 0 0 0 0 - - -;
+#X text 170 609 w1;
+#X text 130 609 w2;
+#X text 90 609 w3;
+#X symbolatom 305 509 0 0 0 0 - - -;
+#X symbolatom 274 509 0 0 0 0 - - -;
+#X symbolatom 244 509 0 0 0 0 - - -;
+#X obj 244 485 unpack s s s s s s s s s s, f 39;
+#X text 276 529 etw;
+#X text 306 529 w3;
+#X symbolatom 335 509 0 0 0 0 - - -;
+#X text 336 529 w2;
+#X symbolatom 365 509 0 0 0 0 - - -;
+#X text 366 529 w1;
+#X symbolatom 395 509 0 0 0 0 - - -;
+#X text 396 529 ukw;
+#X symbolatom 425 509 0 0 0 0 - - -;
+#X text 426 529 w1;
+#X symbolatom 455 509 0 0 0 0 - - -;
+#X symbolatom 485 509 0 0 0 0 - - -;
+#X symbolatom 515 509 0 0 0 0 - - -;
+#X text 456 529 w2;
+#X text 486 529 w3;
+#X text 140 509 plain text -->;
+#X text 543 509 <-- ciphertext;
+#X text 94 96 plain text is first enciphered using a simple substitution
+cipher (the entry wheel or 'eintrittswalze' \, often abbreviated to
+etw). the output of the etw is then serially enciphered through wheels
+3 > 2 > 1 (which are each in affect combinations of a Caesar cipher
+and a substituion cipher) before entering another simple substitution
+cipher (the reflector or 'umkehrwalze' \, often abbreviated to ukw).
+the wheels in between the etw and ukw rotate 1/26th of a revolution
+for every letter enciphered \, whilst the etw and ukw remain static
+position through every key press. note that the value in the etw symbol
+box does not change through successive encipherments when enciphering
+the same letter repeatedly., f 77;
+#X text 94 246 the ukw serves to reverse the direction of encipherment
+back through wheels 3 > 2 > 1 \, before one final encipherment through
+etw and on to the output (lamp bulbs on the enigma machine)., f 77
+;
+#X text 94 57 the third outlet of the [list_enigma] object monitors
+the internal states of Enigma's cipher algorithm., f 77;
+#X connect 0 0 1 0;
+#X connect 1 1 5 0;
+#X connect 1 2 16 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 0;
+#X connect 5 0 9 0;
+#X connect 5 1 8 0;
+#X connect 5 2 6 0;
+#X connect 16 0 15 0;
+#X connect 16 1 14 0;
+#X connect 16 2 13 0;
+#X connect 16 3 19 0;
+#X connect 16 4 21 0;
+#X connect 16 5 23 0;
+#X connect 16 6 25 0;
+#X connect 16 7 27 0;
+#X connect 16 8 28 0;
+#X connect 16 9 29 0;

@@ -1,0 +1,34 @@
+#N canvas 289 25 601 560 12;
+#X msg 94 161 a;
+#X obj 94 255 list_enigma;
+#X msg 114 221 wheelorder 3 2 1 \, ringsetting 1 1 1 \, position a
+a z y;
+#X obj 114 197 loadbang;
+#X symbolatom 94 359 0 0 0 0 - - -;
+#X text 124 359 <-- random output;
+#X obj 131 279 unpack s s s;
+#X symbolatom 212 303 0 0 0 0 - - -;
+#X text 242 303 <-- wheel position;
+#X symbolatom 171 303 0 0 0 0 - - -;
+#X symbolatom 131 303 0 0 0 0 - - -;
+#X text 213 323 w1;
+#X text 173 323 w2;
+#X text 133 323 w3;
+#X text 124 161 <-- click to make a random letter;
+#X text 94 56 the enigma cipher can be thought of as a kind of sudo-random
+generator - by entering the same letter repeatedly \, a seemingly random
+string of letters is produced. the length of this random string is
+16900 characters.;
+#X text 94 416 the Enigma cipher has an anomaly where a letter cannot
+be enciphered as itself. when used as a random character generator
+like above \, this limits the resolution to 25 rather than 26 characters
+\, with the resulting string lacking whatever letter is being input.
+;
+#X connect 0 0 1 0;
+#X connect 1 0 4 0;
+#X connect 1 1 6 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 0;
+#X connect 6 0 10 0;
+#X connect 6 1 9 0;
+#X connect 6 2 7 0;

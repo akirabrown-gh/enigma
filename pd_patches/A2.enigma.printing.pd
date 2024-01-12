@@ -1,0 +1,64 @@
+#N canvas 348 25 627 704 12;
+#X obj 165 255 key;
+#X obj 165 339 list tosymbol;
+#X symbolatom 165 363 0 0 0 0 - - -;
+#X obj 165 477 list_enigma;
+#X symbolatom 165 501 0 0 0 0 - - -;
+#X obj 222 501 unpack s s s;
+#X symbolatom 222 525 0 0 0 3 - - -;
+#X symbolatom 262 525 0 0 0 3 - - -;
+#X symbolatom 303 525 0 0 0 3 - - -;
+#X text 300 544 w1;
+#X text 259 544 w1;
+#X text 219 544 w1;
+#X obj 165 279 moses 97;
+#X obj 218 303 moses 123;
+#X text 61 363 plain text -->;
+#X text 61 500 ciphertext -->;
+#X text 330 544 <-- wheel positions;
+#X msg 185 443 wheelorder 3 2 1 \, ringsetting 1 1 1 \, position a
+a z y;
+#X obj 185 395 loadbang;
+#X obj 185 419 del 1;
+#X msg 165 575 add2 \$1;
+#X msg 165 599 u h a c q;
+#X obj 55 395 key;
+#X obj 55 543 t b b;
+#X obj 165 655 print;
+#X msg 81 577 set;
+#X obj 55 419 sel 10 8;
+#X text 51 34 this patch builds upon N1.enigma.cipher \, adding a printable
+readout of the ciphertext to the Pd window. ciphertext is first stored
+in the message box and a keyboard return prints the ciphertext and
+restores the cipher to its initialisation settings., f 75;
+#X text 51 104 to encrypt a message \, start typing - the encrypted
+message will appear in the message box. once you have finished typing
+out your message \, hit return - the ciphertext will be printed to
+the Pd., f 75;
+#X text 51 164 to decipher a message \, simply type out the ciphertext
+that was printed in the Pd window (hitting backspace will reset the
+Enigma and empty the message box without printing), f 75;
+#X connect 0 0 12 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 3 1 5 0;
+#X connect 4 0 20 0;
+#X connect 5 0 6 0;
+#X connect 5 1 7 0;
+#X connect 5 2 8 0;
+#X connect 12 1 13 0;
+#X connect 13 0 1 0;
+#X connect 17 0 3 0;
+#X connect 18 0 19 0;
+#X connect 19 0 17 0;
+#X connect 20 0 21 0;
+#X connect 21 0 24 0;
+#X connect 22 0 26 0;
+#X connect 23 0 25 0;
+#X connect 23 1 21 0;
+#X connect 25 0 21 0;
+#X connect 26 0 23 0;
+#X connect 26 0 17 0;
+#X connect 26 1 25 0;
+#X connect 26 1 17 0;

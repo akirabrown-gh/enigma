@@ -1,0 +1,78 @@
+#N canvas 269 55 677 719 12;
+#X obj 202 360 list_enigma;
+#X obj 83 360 symbol;
+#X msg 83 230 bang;
+#X symbolatom 202 574 0 0 0 0 - - -;
+#X obj 122 262 loadbang;
+#X text 232 575 <-- random character;
+#X msg 202 296 wheelorder 3 2 1 \, ringsetting 1 1 1 \, position a
+a z y;
+#X text 125 230 <-- randomize;
+#X obj 239 504 unpack s s s;
+#X symbolatom 320 528 0 0 0 0 - - -;
+#X text 350 528 <-- wheel position;
+#X symbolatom 279 528 0 0 0 0 - - -;
+#X symbolatom 239 528 0 0 0 0 - - -;
+#X text 321 548 w1;
+#X text 281 548 w2;
+#X text 241 548 w3;
+#X symbolatom 337 408 0 0 0 0 - - -;
+#X symbolatom 306 408 0 0 0 0 - - -;
+#X symbolatom 276 428 0 0 0 0 - - -;
+#X obj 276 384 unpack s s s s s s s s s s, f 39;
+#X text 308 428 etw;
+#X text 338 428 w3;
+#X symbolatom 367 408 0 0 0 0 - - -;
+#X text 368 428 w2;
+#X symbolatom 397 408 0 0 0 0 - - -;
+#X text 398 428 w1;
+#X symbolatom 427 408 0 0 0 0 - - -;
+#X text 428 428 ukw;
+#X symbolatom 457 408 0 0 0 0 - - -;
+#X text 458 428 w1;
+#X symbolatom 487 408 0 0 0 0 - - -;
+#X symbolatom 517 408 0 0 0 0 - - -;
+#X symbolatom 547 408 0 0 0 0 - - -;
+#X text 488 428 w2;
+#X text 518 428 w3;
+#X msg 122 326 symbol a;
+#X text 143 306 'seed';
+#X text 276 448 plain text;
+#X text 547 428 ciphertext;
+#X text 64 46 the length of the random sequence can be increased beyond
+16900 characters through a method i call 'no-input encryption' - treating
+the ciphertext like plain text and creating a feedback loop between
+the output and input. the exact length of a given sequence depends
+on a number of variables \, such as the plain text seed \, initial
+position of all four wheels \, and the wheel order. essentially \,
+if when all wheels have rotated a full revolution and the next letter
+is not the same as the initial letter \, the string continues for another
+16900 characters until it matches. my own tests show that the maximum
+string length is 25 * 16900 - a string of 26 * 16900 did not occur.
+, f 73;
+#X text 64 626 this method also overcomes the character limitation
+identified in N3.enigma.random.pd and gives a even distribution of
+all 26 characters., f 73;
+#X connect 0 0 3 0;
+#X connect 0 0 1 1;
+#X connect 0 1 8 0;
+#X connect 0 2 19 0;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X connect 4 0 35 0;
+#X connect 4 0 6 0;
+#X connect 6 0 0 0;
+#X connect 8 0 12 0;
+#X connect 8 1 11 0;
+#X connect 8 2 9 0;
+#X connect 19 0 18 0;
+#X connect 19 1 17 0;
+#X connect 19 2 16 0;
+#X connect 19 3 22 0;
+#X connect 19 4 24 0;
+#X connect 19 5 26 0;
+#X connect 19 6 28 0;
+#X connect 19 7 30 0;
+#X connect 19 8 31 0;
+#X connect 19 9 32 0;
+#X connect 35 0 1 1;

@@ -1,0 +1,44 @@
+#N canvas 249 119 645 538 12;
+#X obj 56 224 soundfiler;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array table 16900 float 2;
+#X coords 0 1 16900 -1 200 140 1 0 0;
+#X restore 56 266 graph;
+#X floatatom 336 186 0 0 100 0 - - -;
+#X obj 336 210 / 100;
+#X obj 336 354 phasor~;
+#X obj 336 378 *~ 16900;
+#X obj 336 402 tabread~ table;
+#X obj 336 448 output~;
+#X obj 336 258 * 1.18343;
+#X floatatom 336 282 0 0 0 0 - - -;
+#X text 370 186 <- fidelity (%);
+#X text 408 258 multiply by sr / cipher period;
+#X obj 336 234 pow 2;
+#X obj 336 306 pack 0 50;
+#X obj 336 330 line~;
+#X text 56 36 a far cheeper way of making an Enigma-based noise generator
+is to simply take a table containing one entire cipher period of random
+characters and running this at audio rate. this particular table contains
+16900 characters generated through no-input encryption \, starting
+with symbol a as the seed and with a wheelorder 3 2 1 \, ringsetting
+1 1 1 \, and initial position a a a z., f 77;
+#X obj 56 176 loadbang;
+#X obj 336 127 loadbang;
+#X msg 336 151 33;
+#X msg 56 200 read -resize enigma_noise.wav table;
+#X connect 2 0 3 0;
+#X connect 3 0 12 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
+#X connect 6 0 7 1;
+#X connect 8 0 9 0;
+#X connect 9 0 13 0;
+#X connect 12 0 8 0;
+#X connect 13 0 14 0;
+#X connect 14 0 4 0;
+#X connect 16 0 19 0;
+#X connect 17 0 18 0;
+#X connect 18 0 2 0;
+#X connect 19 0 0 0;

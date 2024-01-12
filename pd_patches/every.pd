@@ -1,0 +1,35 @@
+#N canvas 143 81 535 534 12;
+#X obj 122 355 select 0;
+#X obj 90 177 int;
+#X obj 220 177 + 1;
+#X obj 220 291 %;
+#X obj 90 291 t f f;
+#X obj 90 139 inlet;
+#X obj 122 379 outlet;
+#X obj 238 203 inlet;
+#X obj 238 267 i \$1;
+#X obj 248 233 loadbang;
+#X text 54 54 when a bang is recieved at the [int] object \, first
+its output is checked to see if the counter is at 0 \, and then the
+counter incriments. if the counter delivers a 0 before incrimenting
+\, a bang output bang is made.;
+#X text 54 424 this is useful for determining individual note lengths
+in a sequence of pitches - i.e. quarter notes \, triplets etc.;
+#X text 282 203 <- number of bangs needed;
+#X text 139 139 <- bangs in;
+#X text 175 379 <- bang out;
+#X text 54 474 Akira Brown;
+#X text 54 24 every - bang output every n bangs;
+#X obj 132 325 outlet;
+#X text 185 325 <- bangs counted;
+#X connect 0 0 6 0;
+#X connect 1 0 4 0;
+#X connect 2 0 3 0;
+#X connect 3 0 1 1;
+#X connect 4 0 2 0;
+#X connect 4 1 0 0;
+#X connect 4 1 17 0;
+#X connect 5 0 1 0;
+#X connect 7 0 8 0;
+#X connect 8 0 3 1;
+#X connect 9 0 8 0;

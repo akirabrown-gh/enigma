@@ -1,0 +1,24 @@
+#N canvas 158 89 620 324 12;
+#X obj 32 160 *;
+#X obj 32 208 pow \$1;
+#X obj 32 232 * 8.1758;
+#X msg 32 184 2 \$1;
+#X obj 50 136 / 13;
+#X obj 32 56 + 5.75;
+#X obj 32 32 inlet;
+#X obj 50 88 loadbang;
+#X msg 50 112 1;
+#X obj 32 256 outlet;
+#X text 153 28 easley - 'midi to frequency' converter using 13-note
+equal tuning \, named after Easley Blackwood for his 'Twelve Microtonal
+Etudes for Electronic Music Media \, Op. 28' (1980). here midi note
+69 is mapped to 440Hz.;
+#X connect 0 0 3 0;
+#X connect 1 0 2 0;
+#X connect 2 0 9 0;
+#X connect 3 0 1 0;
+#X connect 4 0 0 1;
+#X connect 5 0 0 0;
+#X connect 6 0 5 0;
+#X connect 7 0 8 0;
+#X connect 8 0 4 0;

@@ -1,0 +1,91 @@
+#N canvas 130 39 658 651 12;
+#X obj 76 206 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 76 226 metro;
+#X floatatom 108 202 0 0 0 0 - - -;
+#X obj 108 154 loadbang;
+#X text 26 204 run ->;
+#X obj 146 264 every;
+#X obj 309 290 list fromsymbol;
+#X obj 309 314 - 96;
+#X floatatom 309 338 0 0 0 0 - - -;
+#X floatatom 128 295 0 0 0 0 - - -;
+#X symbolatom 309 267 0 0 0 0 - - -;
+#X text 343 267 <- ciphertext;
+#X text 31 296 bang count ->;
+#X obj 469 470 bohlen;
+#X obj 469 494 osc~;
+#X obj 469 518 *~;
+#X floatatom 199 382 0 0 0 0 - - -;
+#X text 140 202 <-- rate;
+#X obj 146 406 pack f f;
+#X msg 146 430 1 \, 0 \$2;
+#X obj 146 454 vline~;
+#X obj 146 478 *~;
+#X obj 146 502 lop~ 100;
+#X obj 446 556 output~;
+#X msg 108 178 90;
+#X text 230 383 <-- decay (msec);
+#X obj 199 334 loadbang;
+#X obj 469 446 +;
+#X floatatom 487 422 0 0 0 0 - - -;
+#X obj 487 374 loadbang;
+#X text 518 423 <- transpose;
+#X text 31 311 between steps;
+#X obj 469 212 unpack s;
+#X text 340 338 <- bangs required;
+#X text 340 358 to step;
+#X obj 309 243 symbol a;
+#X obj 249 189 symbol;
+#X obj 309 189 list_enigma;
+#X obj 469 236 list fromsymbol;
+#X obj 469 260 - 97;
+#X obj 318 219 loadbang;
+#X msg 199 358 250;
+#X msg 487 398 60;
+#X text 56 27 using the [every] object created for this project \,
+the enigma cipher can also be mapped to effect timing of events. in
+this patch \, the enigma's ciphertext determines the time division
+of its own stepping - where symbol 'a' would only require one bang
+to step the cipher to the next position \, symbol 'b' would require
+two bangs \, symbol 'c' three etc. the rate of these successive bangs
+are determined by the metro object. in this patch \, pitch is now mapped
+to the initial output of the entry wheel., f 78;
+#X connect 0 0 1 0;
+#X connect 1 0 5 0;
+#X connect 2 0 1 1;
+#X connect 3 0 24 0;
+#X connect 5 0 18 0;
+#X connect 5 0 36 0;
+#X connect 5 1 9 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 8 0 5 1;
+#X connect 10 0 6 0;
+#X connect 13 0 14 0;
+#X connect 14 0 15 0;
+#X connect 15 0 23 0;
+#X connect 15 0 23 1;
+#X connect 16 0 18 1;
+#X connect 18 0 19 0;
+#X connect 19 0 20 0;
+#X connect 20 0 21 0;
+#X connect 20 0 21 1;
+#X connect 21 0 22 0;
+#X connect 22 0 15 1;
+#X connect 24 0 2 0;
+#X connect 26 0 41 0;
+#X connect 27 0 13 0;
+#X connect 28 0 27 1;
+#X connect 29 0 42 0;
+#X connect 32 0 38 0;
+#X connect 35 0 36 1;
+#X connect 35 0 10 0;
+#X connect 36 0 37 0;
+#X connect 37 0 35 0;
+#X connect 37 2 32 0;
+#X connect 38 0 39 0;
+#X connect 39 0 27 0;
+#X connect 40 0 35 0;
+#X connect 41 0 16 0;
+#X connect 42 0 28 0;

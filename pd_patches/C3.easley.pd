@@ -1,0 +1,46 @@
+#N canvas 424 138 554 578 12;
+#X symbolatom 281 296 0 0 0 0 - - -;
+#X obj 211 377 osc~;
+#X floatatom 211 343 0 0 0 0 - - -;
+#X obj 301 346 t b;
+#X obj 301 394 vline~;
+#X obj 211 401 *~;
+#X obj 301 418 *~;
+#X obj 301 442 lop~ 100;
+#X msg 301 370 1 \, 0 300;
+#X obj 208 180 key;
+#X obj 281 262 list tosymbol;
+#X obj 208 204 moses 97;
+#X obj 261 228 moses 123;
+#X obj 211 262 - 97;
+#X obj 211 286 + 56;
+#X text 317 296 <-- plain text;
+#X text 41 342 encrypted frequency -->;
+#X obj 211 310 easley;
+#X obj 211 463 output~;
+#X text 74 35 a chromatic scale in 13-TET tuning also maps well to
+a musical cipher \, spanning two octaves. like the O2.bohlen.pd patch
+\, symbol 'n' is mapped to 440Hz \, but this time symbol 'a' results
+in an output one octave lower rather \, than a tritave lower. the midi
+to frequency conversion patch used here is named after Easley Blackwood's
+\, who explored the 13-note system in his microtonal electronic studies.
+;
+#X connect 1 0 5 0;
+#X connect 2 0 1 0;
+#X connect 3 0 8 0;
+#X connect 4 0 6 0;
+#X connect 4 0 6 1;
+#X connect 5 0 18 0;
+#X connect 5 0 18 1;
+#X connect 6 0 7 0;
+#X connect 7 0 5 1;
+#X connect 8 0 4 0;
+#X connect 9 0 11 0;
+#X connect 10 0 0 0;
+#X connect 11 1 12 0;
+#X connect 12 0 10 0;
+#X connect 12 0 13 0;
+#X connect 13 0 14 0;
+#X connect 14 0 17 0;
+#X connect 17 0 2 0;
+#X connect 17 0 3 0;
